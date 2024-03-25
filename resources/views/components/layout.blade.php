@@ -15,7 +15,13 @@
         <a href="/contact">Contact</a>
     </nav>
 
-    <h2> this is the Home Page</h2>
+    {{--
+    {{ $slot}} === <php echo $slot ?>
+        --}}
+
+
+        {{ $slot}}
+
 </body>
 
 </html>
