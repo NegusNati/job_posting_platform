@@ -3,17 +3,18 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        "greeting" => "Hey Dude",
+    ]);
 });
 
 Route::get('/about', function () {
 
     return view('about');
-
 });
 
 
-Route::get('/contact', function(){
+Route::get('/contact', function () {
     return view('contact');
 });
 
@@ -28,4 +29,3 @@ Route::get('/contact', function(){
 // Route::get('/about/{id}', function ($id) {
 //     return view('about', ['id' => $id]);
 // })->name('yes');
-
