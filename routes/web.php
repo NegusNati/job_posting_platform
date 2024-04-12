@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Arr;
 
-Route::get('/', function () {
-    return view('home', [
-        "jobs" => [
+class Job
+{
+
+    public static function all(): array
+    {
+        return  [
             [
                 "id" => 1,
                 "name" => "Devloper",
@@ -23,13 +27,27 @@ Route::get('/', function () {
                 "description" => "Chief Technology Officer and Engineer",
                 "salary" => "100000"
             ],
-        ]
+        ];
+    }
+}
+
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/jobs', function () {
+
+    return view('jobs',  [
+        "jobs" => Job::all()
     ]);
 });
 
-Route::get('/about', function () {
+Route::get("jobs/{id}", function ($id) {
 
-    return view('about');
+    $job =  Arr::first(Job::all(), fn ($job) => $job['id'] == $id);
+    // dd($job);
+    return view('job', ['job' => $job]);
 });
 
 

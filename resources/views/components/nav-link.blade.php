@@ -1,7 +1,7 @@
 {{-- <a {{ $attributes }}>
     {{ $slot}}
 </a> --}}
-@props(['active' => false ]);
+@props(['active' => false ])
 {{--
 @php
 $active = request()->is('about');
