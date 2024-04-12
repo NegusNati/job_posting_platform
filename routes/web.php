@@ -4,7 +4,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        "greeting" => "Hey Dude",
+        "jobs" => [
+            [
+                "id" => 1,
+                "name" => "Devloper",
+                "description" => "Web Developer, UI/UX Developer",
+                "salary" => "60000"
+            ],
+            [
+                "id" => 2,
+                "name" => "Product Manager",
+                "description" => "Product Lead and Planning",
+                "salary" => "70000"
+            ],
+            [
+                "id" => 3,
+                "name" => "CTO",
+                "description" => "Chief Technology Officer and Engineer",
+                "salary" => "100000"
+            ],
+        ]
     ]);
 });
 
