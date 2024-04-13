@@ -9,7 +9,7 @@
         <li>
             <strong>
                 <a href="/jobs/{{$job['id']}}" class="hover:underline text-blue-600">
-                    {{$job['name']}}
+                    {{$job['title']}}
                 </a>
             </strong>
             <p> {{$job['description']}}, it pays &dollar;{{ number_format($job['salary'])}} </p>
