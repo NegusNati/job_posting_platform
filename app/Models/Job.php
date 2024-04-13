@@ -2,49 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 
-class Job
+class Job extends Model
 {
-
-    public static function all(): array
-    {
-        return  [
-            [
-                "id" => 1,
-                "name" => "Devloper",
-                "description" => "Web Developer, UI/UX Developer",
-                "salary" => "60000"
-            ],
-            [
-                "id" => 2,
-                "name" => "Product Manager",
-                "description" => "Product Lead and Planning",
-                "salary" => "70000"
-            ],
-            [
-                "id" => 3,
-                "name" => "CTO",
-                "description" => "Chief Technology Officer and Engineer",
-                "salary" => "100000"
-            ],
-        ];
-    }
+    protected $table = 'job_listings';
 
 
 
 
 
-    public static function find(int $id)
-    {
 
-        $job =  Arr::first(static::all(), fn ($job) => $job['id'] == $id);
 
-        if (!$job) { //is $job == null (meaning the $jobs array doesn't have it)
-            return abort(404, "No such job");
-        }
+    // public static function find(int $id)
+    // {
 
-        return $job;
-    }
+    //     $job =  Arr::first(static::all(), fn ($job) => $job['id'] == $id);
+
+    //     if (!$job) { //is $job == null (meaning the $jobs array doesn't have it)
+    //         return abort(404, "No such job");
+    //     }
+
+    //     return $job;
+    // }
 }
