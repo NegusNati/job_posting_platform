@@ -13,21 +13,8 @@ class Job extends Model
 
     protected $fillable = ['title' , 'description', 'salary'];
 
+    public function employer(){
+        return $this->belongsTo(Employer::class);
+    }
 
-
-
-
-
-
-    // public static function find(int $id)
-    // {
-
-    //     $job =  Arr::first(static::all(), fn ($job) => $job['id'] == $id);
-
-    //     if (!$job) { //is $job == null (meaning the $jobs array doesn't have it)
-    //         return abort(404, "No such job");
-    //     }
-
-    //     return $job;
-    // }
 }
