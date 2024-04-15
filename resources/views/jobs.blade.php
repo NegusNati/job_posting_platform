@@ -4,18 +4,17 @@
     </x-slot:heading>
     {{-- <p> the Id is {{ $id }}</p> --}}
 
-    <ul>
+    <div class="space-y-4">
         @foreach ( $jobs as $job )
-        <li>
-            <strong>
-                <a href="/jobs/{{$job['id']}}" class="hover:underline text-blue-600">
-                    {{$job['title']}}
-                </a>
-            </strong>
+
+        <a href="/jobs/{{$job['id']}}" class="block px-4 py-6 border border-gray-200 rounded-lg ">
+
+            <strong> {{$job['title']}}</strong>
+            <i> {{ $job->employer['name']}} </i>
             <p> {{$job['description']}}, it pays &dollar;{{ number_format($job['salary'])}} </p>
-        </li>
+        </a>
         @endforeach
-    </ul>
+    </div>
 
 
 </x-layout>
