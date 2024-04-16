@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+
     protected $table = 'job_listings';
 
-    protected $fillable = ['title' , 'description', 'salary'];
+    // protected $fillable = ['employer_id', 'title' , 'description', 'salary'];
+    protected $guarded = [];  // meaning all can be mass assigned 
 
     public function employer(){
         return $this->belongsTo(Employer::class);

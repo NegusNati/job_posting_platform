@@ -10,22 +10,36 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->cursorPaginate(6); //loding data with eager loading insted of lazy loading
+    $jobs = Job::with('employer')->latest()->paginate(80); //loding data with eager loading insted of lazy loading
     return view('jobs.index',  [
         "jobs" => $jobs
     ]);
 });
 
-Route::get('jobs/create', function () {
+Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
 
 // Always put the route with a wildcard at the end of the similar routes
-Route::get("jobs/{id}", function ($id) {
+Route::get("/jobs/{id}", function ($id) {
     $job = Job::find($id);
 
     return view('jobs.show', ['job' => $job]);
 });
+
+Route::post('/jobs', function () {
+    // dd(request()->all); to get all the input values and the csrf token
+    // dd(request('salary'));
+
+    Job::create([
+        'employer_id' => 1,
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'description' => request('description'),
+    ]);
+    return redirect('/jobs');
+});
+
 
 Route::get('/contact', function () {
     return view('contact');

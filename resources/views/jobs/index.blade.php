@@ -11,7 +11,7 @@
 
             <strong> {{$job['title']}}</strong>
             <i> {{ $job->employer['name']}} </i>
-            <p> {{$job['description']}}, it pays &dollar;{{ number_format($job['salary'])}} </p>
+            <p> {{$job['description']}} And it pays &dollar;{{ number_format($job['salary'])}} </p>
         </a>
         @endforeach
     </div>
