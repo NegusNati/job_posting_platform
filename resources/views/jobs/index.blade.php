@@ -15,7 +15,7 @@
         </a>
         @endforeach
     </div>
-    <div>
+    <div class="my-8">
         {{ $jobs->links() }}
     </div>
 
