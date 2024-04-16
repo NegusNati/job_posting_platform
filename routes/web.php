@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->paginate(6); //loding data with eager loading insted of lazy loading
+    $jobs = Job::with('employer')->simplePaginate(6); //loding data with eager loading insted of lazy loading
 
     return view('jobs',  [
         "jobs" => $jobs
