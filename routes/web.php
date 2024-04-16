@@ -33,7 +33,7 @@ Route::post('/jobs', function () {
     request()->validate(
         [
             'title' => ['required', 'string', 'min:4'],
-            'salary' => ['required', 'numeric', 'min:4'],
+            'salary' => ['required', 'digits_between:4,7'],
             'description' => ['required', 'min:10'],
         ]
     );
