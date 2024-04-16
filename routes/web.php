@@ -30,6 +30,14 @@ Route::get("/jobs/{id}", function ($id) {
 Route::post('/jobs', function () {
     // dd(request()->all); to get all the input values and the csrf token
     // dd(request('salary'));
+    request()->validate(
+        [
+            'title' => ['required', 'string', 'min:4'],
+            'salary' => ['required', 'numeric', 'min:4'],
+            'description' => ['required', 'min:10'],
+        ]
+    );
+
 
     Job::create([
         'employer_id' => 1,
