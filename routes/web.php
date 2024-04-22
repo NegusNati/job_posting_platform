@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
 
-//the home route
-Route::get('/', function () {
-    return view('home');
-});
 
+Route::view('/', 'home');
 
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create',[JobController::class , 'create']);
@@ -20,11 +17,8 @@ Route::get("/jobs/{job}", [JobController::class, 'show']);
 Route::post('/jobs', [JobController::class, 'store']);
 
 
+Route::view('/contact', 'contact');
 
-
-Route::get('/contact', function () {
-    return view('contact');
-});
 
 
 
