@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
@@ -9,125 +10,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-// displays all jobs
-Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->latest()->paginate(10); //loding data with eager loading insted of lazy loading
-    return view('jobs.index',  [
-        "jobs" => $jobs
-    ]);
-});
 
-// to create new jobs
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
-
-//to edit existing job
-Route::get('/jobs/edit/{id}', function ($id) {
-    $job = Job::find($id);
-    return view('jobs.edit', [
-        'job' => $job
-    ]);
-});
-
-// Route::post('/jobs/edit', function () {
-//     // dd(request()->all); to get all the input values and the csrf token
-//     // dd(request('salary'));
-//     request()->validate(
-//         [
-//             'title' => ['required', 'string', 'min:4'],
-//             'salary' => ['required', 'digits_between:4,7', 'gt:1000'],
-//             'description' => ['required', 'min:10'],
-//         ]
-//     );
-//     dd(request()->all());
-//     $job = Job::find(request()->all());
-
-//     $job->update(
-//         [
-//             'title' => request('title'),
-//             'salary' => request('salary'),
-//             'description' => request('description'),
-//         ]
-//     );
-
-//     return redirect('/jobs');
-// });
-
-// Always put the route with a wildcard at the end of the similar routes
-
-//update individual job
-Route::patch("/jobs/{job}", function (Job $job) {
-    //authorization (on hold....)
-
-    //validation
-    request()->validate(
-        [
-            'title' => ['required', 'string', 'min:4'],
-            'salary' => ['required', 'digits_between:4,7'],
-            'description' => ['required', 'min:10'],
-        ]
-    );
-
-    //update individual job
-    // $job = Job::findOrFail($id);
-
-    //method #1
-    // $job->title = request('title');
-    // $job->description = request('description');
-    // $job->salary = request('salary');
-    // $job->save();
-    //method #2
-
-    $job->update(
-        [
-            'title' => request('title'),
-            'salary' => request('salary'),
-            'description' => request('description'),
-        ]
-    );
-
-    return redirect("/jobs/" . $job->id);
-});
-
-//destroy individual job
-Route::delete("/jobs/{job}", function (Job $job) {
-    //authorize the request (on hold...)
-    //delete the job
-    // $job = Job::findOrFail($id);
-    $job->delete();
-    //redirect
-    return redirect('/jobs');
-});
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create',[JobController::class , 'create']);
+Route::get('/jobs/edit/{job}',[JobController::class, 'edit']);
+Route::patch("/jobs/{job}", [JobController::class, 'update']);
+Route::delete("/jobs/{job}", [JobController::class, 'destroy']);
+Route::get("/jobs/{job}", [JobController::class, 'show']);
+Route::post('/jobs', [JobController::class, 'store']);
 
 
-//show individual job
-Route::get("/jobs/{job}", function (Job $job) {
-    // $job = Job::find($id);
-
-    return view('jobs.show', ['job' => $job]);
-});
-
-Route::post('/jobs', function () {
-    // dd(request()->all); to get all the input values and the csrf token
-    // dd(request('salary'));
-    request()->validate(
-        [
-            'title' => ['required', 'string', 'min:4'],
-            'salary' => ['required', 'digits_between:4,7'],
-            'description' => ['required', 'min:10'],
-        ]
-    );
-
-
-    Job::create([
-        'employer_id' => 1,
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'description' => request('description'),
-    ]);
-    return redirect('/jobs');
-});
 
 
 Route::get('/contact', function () {
