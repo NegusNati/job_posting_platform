@@ -46,7 +46,7 @@ class JobController extends Controller
     }
     public function update(Job $job)
     {
-    //authorization (on hold....)
+ //authorization (on hold....)
 
     //validation
     request()->validate(
