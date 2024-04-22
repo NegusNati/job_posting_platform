@@ -57,7 +57,8 @@ Route::get('/jobs/edit/{id}', function ($id) {
 // Always put the route with a wildcard at the end of the similar routes
 
 //update individual job
-Route::patch("/jobs/{id}", function ($id) {
+Route::patch("/jobs/{job}", function (Job $job) {
+    //authorization (on hold....)
 
     //validation
     request()->validate(
@@ -67,10 +68,9 @@ Route::patch("/jobs/{id}", function ($id) {
             'description' => ['required', 'min:10'],
         ]
     );
-    //authorization (on hold....)
 
     //update individual job
-    $job = Job::findOrFail($id);
+    // $job = Job::findOrFail($id);
 
     //method #1
     // $job->title = request('title');
@@ -87,15 +87,14 @@ Route::patch("/jobs/{id}", function ($id) {
         ]
     );
 
-    return redirect("/jobs/".$job->id);
-
+    return redirect("/jobs/" . $job->id);
 });
 
 //destroy individual job
-Route::delete("/jobs/{id}", function ($id) {
+Route::delete("/jobs/{job}", function (Job $job) {
     //authorize the request (on hold...)
     //delete the job
-    $job = Job::findOrFail($id);
+    // $job = Job::findOrFail($id);
     $job->delete();
     //redirect
     return redirect('/jobs');
@@ -103,8 +102,8 @@ Route::delete("/jobs/{id}", function ($id) {
 
 
 //show individual job
-Route::get("/jobs/{id}", function ($id) {
-    $job = Job::find($id);
+Route::get("/jobs/{job}", function (Job $job) {
+    // $job = Job::find($id);
 
     return view('jobs.show', ['job' => $job]);
 });
