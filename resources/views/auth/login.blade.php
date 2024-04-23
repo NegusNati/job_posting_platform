@@ -45,7 +45,7 @@
                         <x-form-label for="email">Your Email</x-form-label>
                         <div class="mt-2">
                             <x-form-input type="email" name="email" id="email" autocomplete="email"
-                                placeholder="negus@laravel.com" required />
+                                placeholder="negus@laravel.com" required value="{{old('email')}}" />
                         </div>
                         <x-form-error name="email"></x-form-error>
                     </x-form-field>
@@ -55,7 +55,7 @@
                         <div class="mt-2">
                             <x-form-input type="password" name="password" id="password" autocomplete="password"
                                 placeholder="password!password" required />
-                            <input type="checkbox" id="togglePassword-1"> Show Password
+                            <input type="checkbox" id="togglePassword-1" value="{{old('password')}}"  > Show Password
                         </div>
                         <x-form-error name="password"></x-form-error>
                     </x-form-field>

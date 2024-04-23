@@ -56,7 +56,7 @@
                         <x-form-label for="fname">First Name</x-form-label>
                         <div class="mt-2">
                             <x-form-input name="fname" id="fname" autocomplete="name" placeholder="Natnael"
-                                required />
+                                required value="{{old('fname')}}"   />
                         </div>
                         <x-form-error name="fname"></x-form-error>
                     </x-form-field>
@@ -65,7 +65,7 @@
                         <x-form-label for="lname">Last Name</x-form-label>
                         <div class="mt-2">
                             <x-form-input name="lname" id="lname" autocomplete="name" placeholder="Birhanu"
-                                required />
+                                required value="{{old('lname')}}"  />
                         </div>
                         <x-form-error name="lname"></x-form-error>
                     </x-form-field>
@@ -75,7 +75,7 @@
                         <x-form-label for="email">Your Email</x-form-label>
                         <div class="mt-2">
                             <x-form-input type="email" name="email" id="email" autocomplete="email"
-                                placeholder="negus@laravel.com" required />
+                                placeholder="negus@laravel.com" required value="{{old('email')}}" />
                         </div>
                         <x-form-error name="email"></x-form-error>
                     </x-form-field>
