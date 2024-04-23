@@ -62,7 +62,7 @@
                     </x-form-field>
                     <x-form-field>
 
-                        <x-form-label for="lname">Name</x-form-label>
+                        <x-form-label for="lname">Last Name</x-form-label>
                         <div class="mt-2">
                             <x-form-input name="lname" id="lname" autocomplete="name" placeholder="Birhanu"
                                 required />
