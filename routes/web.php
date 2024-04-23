@@ -7,6 +7,7 @@ use App\Models\Job;
 
 
 Route::view('/', 'home');
+Route::view('/contact', 'contact');
 
 Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index');
@@ -18,23 +19,7 @@ Route::controller(JobController::class)->group(function () {
     Route::post('/jobs',  'store');
 });
 
-// Route::resource('jobs', JobController::class, [
-//     // 'only' => ['index', 'show', 'create', 'store']
-//     'except' => ['edit']
-// ]);
-
-
-Route::view('/contact', 'contact');
 
 
 
 
-//reciving params from URL and echoing them back
-// Route::get('/about/{id}', function ($id) {
-//     return ' the Id is : ${id} ';
-// });
-
-//named route can be used with route() helper method and pass URL params to the view
-// Route::get('/about/{id}', function ($id) {
-//     return view('about', ['id' => $id]);
-// })->name('yes');
