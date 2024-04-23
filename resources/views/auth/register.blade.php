@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading>
-        Create a Job
+        Register
     </x-slot:heading>
 
     <!--

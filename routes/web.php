@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Job;
+use App\Http\Controllers\RegisterUserController;
 
 
 
@@ -20,6 +20,8 @@ Route::controller(JobController::class)->group(function () {
 });
 
 
+//Auth
+Route::get('/register', [RegisterUserController::class, 'create']);
 
 
 
