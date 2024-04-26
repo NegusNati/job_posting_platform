@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class JobController extends Controller
 {
@@ -44,15 +46,27 @@ class JobController extends Controller
 
 
         // if user is not logged in redirect to login
-        if(Auth::guest()){
-            return redirect('/login'); 
-        }
+        // if(Auth::guest()){
+        //     return redirect('/login');
+        // }
 
-        if($job->employer->user->isNot(Auth::user())){
-            abort(403, "An authorized action!");
-        }
+        // if($job->employer->user->isNot(Auth::user())){
+        //     abort(403, "An authorized action!");
+        // }
+
+        //authomatically returns 403 if user is not authorized
+        // Gate::authorize('edit-job', $job);
 
 
+
+        // if (Auth::user()->cannot('edit-job', $job)){
+        //     dd('you are not allowed to edit this job');
+        // }
+
+            // we are using middleware now  
+        // if(Gate::denies('edit-job', $job)){
+        //     abort(403, "An authorized action!");
+        // }
         return view('jobs.edit', [
             'job' => $job
         ]);

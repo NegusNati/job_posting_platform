@@ -13,11 +13,21 @@ Route::view('/contact', 'contact');
 Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index');
     Route::get('/jobs/create', 'create');
-    Route::get('/jobs/edit/{job}', 'edit');
-    Route::patch("/jobs/{job}", 'update');
-    Route::delete("/jobs/{job}", 'destroy');
     Route::get("/jobs/{job}", 'show');
-    Route::post('/jobs',  'store');
+
+
+    // Route::get('/jobs/edit/{job}', 'edit')->middleware(['auth', 'can:edit-job,job']); wen using a Gate
+    Route::get('/jobs/edit/{job}', 'edit')
+        ->middleware('auth')
+        ->can('edit', 'job');
+    Route::patch("/jobs/{job}", 'update')
+        ->middleware('auth')
+        ->can('edit', 'job');
+    Route::delete("/jobs/{job}", 'destroy')
+        ->middleware('auth')
+        ->can('edit', 'job');
+    Route::post('/jobs',  'store')
+        ->middleware('auth');
 });
 
 
@@ -26,10 +36,6 @@ Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
 
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('throttle:login');
 Route::post('/logout', [SessionController::class, 'destroy']);
-
-
-
-
