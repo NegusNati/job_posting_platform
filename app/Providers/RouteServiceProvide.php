@@ -28,9 +28,9 @@ class RouteServiceProvider extends ServiceProvider
      * Configure the rate limiters for the application.
      */
     protected function configureRateLimiting()
-    {
+    {   
         RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5)->by($request->ip());
+            return Limit::perMinute(50)->by($request->ip());
             // return Limit::perMinute(2)->response(function () {
             //     return response('You have activated the rate limiter', 429);
             // });

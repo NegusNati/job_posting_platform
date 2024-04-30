@@ -2,7 +2,7 @@
 
 return [
 
-
+'email' => env('APP_EMAIL', 'Natnaelbirhanu22@gmail.com'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

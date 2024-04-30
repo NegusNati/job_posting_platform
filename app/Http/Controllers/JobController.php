@@ -6,7 +6,10 @@ use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Mail\Mailable;
+use App\Mail\JobPosted;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -33,12 +36,15 @@ class JobController extends Controller
     );
 
 
-    Job::create([
+    $job = Job::create([
         'employer_id' => 1,
         'title' => request('title'),
         'salary' => request('salary'),
         'description' => request('description'),
     ]);
+
+    Mail::to( $job->employer->user)->send(new JobPosted( $job) );
+
     return redirect('/jobs');
     }
     public function edit(Job $job)
@@ -63,7 +69,7 @@ class JobController extends Controller
         //     dd('you are not allowed to edit this job');
         // }
 
-            // we are using middleware now  
+            // we are using middleware now
         // if(Gate::denies('edit-job', $job)){
         //     abort(403, "An authorized action!");
         // }
