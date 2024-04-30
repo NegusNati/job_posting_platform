@@ -37,7 +37,7 @@ class JobController extends Controller
 
 
     $job = Job::create([
-        'employer_id' => 1,
+        'employer_id' => Auth::user()->employer->id,
         'title' => request('title'),
         'salary' => request('salary'),
         'description' => request('description'),

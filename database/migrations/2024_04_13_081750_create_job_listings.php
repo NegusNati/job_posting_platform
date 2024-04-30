@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('salary');
             $table->timestamps();
+
+            $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
         });
     }
 
