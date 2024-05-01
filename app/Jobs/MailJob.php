@@ -28,6 +28,7 @@ class MailJob implements ShouldQueue
      */
     public function handle(): void
     {
+        //a mail to send to employer with job details, but not synchroniously. put it in a queue then dispatch it using this Job class(mailJob);
          Mail::to($this->jobListing->employer->user)->queue(new JobPosted( $this->jobListing) );
 
         // Mail::to( $jobListing->employer->user)->queue(new JobPosted( $jobListing) );
