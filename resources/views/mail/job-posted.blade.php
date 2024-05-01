@@ -56,7 +56,7 @@
         </div>
         <div class="email-body">
             <p>Dear {{ $job->employer->user->first_name }},</p>
-            <p>Your job posting for the position of {{ $job->title }} at {{ $job->employer->name }} has been
+            <p>Your job posting for the position of <strong>{{ $job->title }}</strong>at <strong>{{ $job->employer->name }}</strong> has been
                 successfully posted, and is live now!.</p>
             <p>You can review or edit your job posting by clicking the button below:</p>
             <a href="{{ url('/jobs/' . $job->id) }}" class="button">Review Job Posting</a>

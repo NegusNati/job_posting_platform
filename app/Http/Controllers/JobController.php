@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MailJob;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,8 @@ class JobController extends Controller
         'description' => request('description'),
     ]);
 
-    Mail::to( $job->employer->user)->send(new JobPosted( $job) );
+    // Mail::to( $job->employer->user)->queue(new JobPosted( $job) );
+    dispatch(new MailJob($job))->delay(now()->addSeconds(5));
 
     return redirect('/jobs');
     }

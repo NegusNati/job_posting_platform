@@ -7,7 +7,14 @@ use App\Http\Controllers\SessionController;
 use App\Mail\JobPosted;
 use Illuminate\Support\Facades\Mail;
 
+Route::get('/mail', function () {
 
+    dispatch(function () {
+        logger('Sending mail');
+    })->delay(now()->addSeconds(5));
+
+    return 'Mail sent';
+});
 
 
 Route::view('/', 'home');
