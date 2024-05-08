@@ -18,7 +18,7 @@
 
     @can('edit', $job)
         <div class="mt-8 mr-2 text-right ">
-            <x-button href="/jobs/edit/{{ $job->id }}">
+            <x-button href="/jobs/edit/{{ $job->id }}"  >
                 Edit Job
             </x-button>
         </div>
